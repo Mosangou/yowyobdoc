@@ -72,7 +72,7 @@ const ApiDocumentation = () => {
             Gérez les paiements via deux principales routes : demander un paiement et vérifier le statut du paiement.
           </p>
         </header>
-
+  
         <div className="p-6">
           {/* Introduction */}
           <section className="mb-8">
@@ -81,7 +81,7 @@ const ApiDocumentation = () => {
               Cette API permet de gérer les paiements de manière rapide, sécurisée et facile à intégrer dans vos applications.
             </p>
           </section>
-
+  
           {/* Authentification */}
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-gray-800">Authentification</h2>
@@ -90,11 +90,29 @@ const ApiDocumentation = () => {
               votre clé API pour éviter tout usage non autorisé.
             </p>
           </section>
-
+  
+          {/* Configuration de l'URL de Callback */}
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-gray-800">Configuration de l&apos;URL de Callback</h2>
+            <p className="text-gray-700 mt-2">
+              Pour configurer l&apos;URL de callback, veuillez vous rendre sur <a href="https://app.beeceptor.com/console/yowyob" className="text-blue-600 underline">ce lien</a> et suivre les étapes ci-dessous :
+            </p>
+            <ol className="list-decimal ml-6 text-gray-700 mt-2">
+              <li>Accédez à la section « Proxy setup ».</li>
+              <li>Entrez votre URL de callback dans le champ prévu à cet effet.</li>
+              <li>Enregistrez les modifications.</li>
+            </ol>
+  
+            {/* Capture d'écran */}
+            <div className="mt-6 text-center flex flex-row justify-center">
+              <Image src="/img/callback_configuration.jpeg" width={700} height={400} alt="Interface de configuration de l'URL de callback" />
+            </div>
+          </section>
+  
           {/* Routes */}
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-gray-800">Routes</h2>
-
+  
             {/* Demander un paiement */}
             <section className="mb-10">
               <h3 className="text-xl font-bold text-gray-800">1. Demander un paiement</h3>
@@ -105,100 +123,65 @@ const ApiDocumentation = () => {
                 <strong>Méthode :</strong> POST
               </p>
               <p className="text-gray-700">
-                <strong>URL :</strong>{" "}
-                <code>https://gateway.yowyob.com/payment-service/{`{api_key}`}/payin</code>
+                <strong>URL :</strong>{' '}
+                <code>https://gateway.yowyob.com/payment-service/{'{api_key}'}/payin</code>
               </p>
               <p className="text-gray-700 mt-2">
-                <strong>Headers requis :</strong>{" "}
+                <strong>Headers requis :</strong>{' '}
                 <code>Content-Type: application/json</code>
               </p>
-
+  
               {/* Diagramme de séquence */}
-              <div className="mt-6 ">
-                <h4 className="text-lg font-semibold text-gray-800 ">Diagramme de Séquence</h4>
-                <div className="mt-6 text-center flex flex-row justify-center">
-                  <Image src="/img/yowyob_pay_seq.png" width={700} height={400} alt="Description de l'image" />
-                </div>
+              <div className="mt-6 text-center flex flex-row justify-center">
+                <Image src="/img/yowyob_pay_seq.png" width={700} height={400} alt="Diagramme de séquence du paiement" />
               </div>
-
+  
               {/* JSON et exemple */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                {/* Objet JSON pour la requête */}
                 <div className="bg-gray-100 p-4 rounded-lg shadow">
                   <h4 className="text-lg font-semibold mb-2">Objet JSON</h4>
-                  <pre className="p-4 rounded-lg overflow-x-auto text-sm bg-gray-50">
-                    {JSON.stringify(requestData, null, 2)}
-                  </pre>
-                  <Copy
-                    className="w-6 h-6 text-blue-600 cursor-pointer mt-2"
-                    onClick={() => copyToClipboard(JSON.stringify(requestData, null, 2))}
-                  />
+                  <pre className="p-4 rounded-lg overflow-x-auto text-sm bg-gray-50">{JSON.stringify(requestData, null, 2)}</pre>
                 </div>
-
-                {/* Exemple de réponse */}
+  
                 <div className="bg-gray-900 text-white p-4 rounded-lg shadow">
                   <h4 className="text-lg font-semibold mb-2">Exemple de réponse</h4>
-                  <pre className="overflow-x-auto text-sm">
-                    {JSON.stringify(exampleResponse, null, 2)}
-                  </pre>
-                  <Copy
-                    className="w-6 h-6 text-gray-300 cursor-pointer mt-2"
-                    onClick={() => copyToClipboard(JSON.stringify(exampleResponse, null, 2))}
-                  />
+                  <pre className="overflow-x-auto text-sm">{JSON.stringify(exampleResponse, null, 2)}</pre>
                 </div>
               </div>
             </section>
-
+  
             {/* Vérifier le statut d'un paiement */}
             <section className="mb-10">
               <h3 className="text-xl font-bold text-gray-800">2. Vérifier le statut du paiement</h3>
               <p className="text-gray-700 mt-2">
-                Cette route permet de vérifier le statut d une transaction existante.
+                Cette route permet de vérifier le statut d&apos;une transaction existante.
               </p>
               <p className="text-gray-700">
                 <strong>Méthode :</strong> GET
               </p>
               <p className="text-gray-700">
-                <strong>URL :</strong>{" "}
-                <code>
-                  https://gateway.yowyob.com/payment-service/{`{api_key}`}/transactions/{`{transaction_code}`}/status
-                </code>
+                <strong>URL :</strong>{' '}
+                <code>https://gateway.yowyob.com/payment-service/{'{api_key}'}/transactions/{'{transaction_code}'}/status</code>
               </p>
               <p className="text-gray-700 mt-2">
-                <strong>Headers requis :</strong>{" "}
-                <code>Authorization: Bearer {`{api_key}`}</code>
+                <strong>Headers requis :</strong>{' '}
+                <code>Authorization: Bearer {'{api_key}'}</code>
               </p>
-
-
-              {/* JSON et exemple */}
+  
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                {/* Objet JSON pour la requête */}
                 <div className="bg-gray-100 p-4 rounded-lg shadow">
                   <h4 className="text-lg font-semibold mb-2">Objet JSON</h4>
-                  <pre className="p-4 rounded-lg overflow-x-auto text-sm bg-gray-50">
-                    {JSON.stringify(requestDataStatus, null, 2)}
-                  </pre>
-                  <Copy
-                    className="w-6 h-6 text-blue-600 cursor-pointer mt-2"
-                    onClick={() => copyToClipboard(JSON.stringify(requestDataStatus, null, 2))}
-                  />
+                  <pre className="p-4 rounded-lg overflow-x-auto text-sm bg-gray-50">{JSON.stringify(requestDataStatus, null, 2)}</pre>
                 </div>
-
-                {/* Exemple de réponse */}
+  
                 <div className="bg-gray-900 text-white p-4 rounded-lg shadow">
                   <h4 className="text-lg font-semibold mb-2">Exemple de réponse</h4>
-                  <pre className="overflow-x-auto text-sm">
-                    {JSON.stringify(exampleResponseStatus, null, 2)}
-                  </pre>
-                  <Copy
-                    className="w-6 h-6 text-gray-300 cursor-pointer mt-2"
-                    onClick={() => copyToClipboard(JSON.stringify(exampleResponseStatus, null, 2))}
-                  />
+                  <pre className="overflow-x-auto text-sm">{JSON.stringify(exampleResponseStatus, null, 2)}</pre>
                 </div>
               </div>
             </section>
           </section>
-
+  
           {/* Codes de statut HTTP */}
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-gray-800">Codes de statut HTTP</h2>
@@ -210,24 +193,20 @@ const ApiDocumentation = () => {
               <li>500 : Erreur interne du serveur</li>
             </ul>
           </section>
-
+  
           {/* Support */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-800">Support</h2>
             <p className="text-gray-700 mt-2">
-              Pour toute assistance, contactez notre équipe technique à :{" "}
-              <a
-                href="mailto:support@example.com"
-                className="text-blue-600 underline"
-              >
-                info@yowyob.com
-              </a>
+              Pour toute assistance, contactez notre équipe technique à :{' '}
+              <a href="mailto:support@example.com" className="text-blue-600 underline">info@yowyob.com</a>
             </p>
           </section>
         </div>
       </div>
     </div>
   );
+  
 };
 
 export default ApiDocumentation;
